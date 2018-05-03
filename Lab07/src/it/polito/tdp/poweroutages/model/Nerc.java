@@ -1,13 +1,22 @@
 package it.polito.tdp.poweroutages.model;
 
-public class Nerc {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Nerc implements Comparable<Nerc>{
 
 	private int id;
 	private String value;
+	private List<PowerOutages> poList ;
 
 	public Nerc(int id, String value) {
+		setPoList(new ArrayList<PowerOutages>()) ;
 		this.id = id;
 		this.value = value;
+	}
+	
+	public Nerc() {
+		setPoList(new ArrayList<PowerOutages>()) ;
 	}
 
 	public int getId() {
@@ -53,5 +62,18 @@ public class Nerc {
 		StringBuilder builder = new StringBuilder();
 		builder.append(value);
 		return builder.toString();
+	}
+
+	public List<PowerOutages> getPoList() {
+		return poList;
+	}
+
+	public void setPoList(List<PowerOutages> poList) {
+		this.poList = poList;
+	}
+
+	@Override
+	public int compareTo(Nerc arg0) {
+		return this.id-arg0.id;
 	}
 }
